@@ -1,0 +1,47 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Node Modules (if you use npm later)
+node_modules/
+
+# Log files
+*.log
+
+# Environment Variables
+.env
+
+# Temporary Files
+*.tmp
+*.temp
+
+# Build folders
+dist/
+build/
+
+# Coverage Reports
+coverage/
+
+# Cache
+.cache/
+
+# Runtime data
+*.pid
+
+# Package locks (optional)
+# package-lock.json
+# yarn.lock
+
+# Generated files
+*.bak
+*.swp
+
+# IDE files
+.idea/
+
+# Local storage test files
+*.sqlite
+*.db

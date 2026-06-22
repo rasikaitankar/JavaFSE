@@ -1,0 +1,20 @@
+# Eclipse
+.metadata/
+.classpath
+.project
+.settings/
+
+# Java
+*.class
+bin/
+target/
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

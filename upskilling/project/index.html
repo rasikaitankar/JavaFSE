@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" content="width=device-width, initial-scale=1.0">
+        <title>Local Community Event Portal</title>
+        <style>
+	    body{
+	    	background-color:#E6E6FA;
+	    }
+        </style>
+        <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+        <script src="script.js"></script>
+	<script src="main.js"></script>
+    </head>
+    <body>
+        <header id="mainHeader">
+            <h1 style="color:red;">Local Community Event Portal</h1>
+
+        <!-- Navigation -->
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="help.html" target="_blank">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+        <!-- Welcome Banner -->
+        <div id="welcomeBanner">
+            Welcome Resident!
+        </div>
+
+        <p>
+            Register Today and Get 
+            <span style="color:red; font-weight:bold;">
+                20% Discount
+            </span>
+        </p>
+
+        <p class="highlight">
+            Community Festival Starts Soon!
+        </p>
+
+        <!-- Home -->
+        <section id="home">
+            <h2>Community News</h2>
+            <div class="news">
+
+                Community events bring people together.
+                Workshops, seminars and music festivals
+                help residents learn, network and enjoy
+                community engagement.
+
+                Community events bring people together.
+                Workshops, seminars and music festivals
+                help residents learn, network and enjoy
+                community engagement.
+
+            </div>
+            <!-- <h2 style="color:red;">Home</h2> -->
+        </section>
+
+        <!-- Event Gallery -->
+
+        <section id="events">
+            <h2>Past Events</h2>
+            
+            <table>
+                <caption>Past Community Events</caption>
+                <tr>
+                    <td>
+                        <img src="venue_img.jpg" alt="Event 1" title="Music Festival" class="image" id="eventImg" ondblclick="enlargeImage()">
+                        <br>
+                        <strong>Music Festival</strong>
+                    </td>
+
+                    <td>
+                        <img src="venue_img.jpg" alt="Event 2" title="Sports Day" class="image">
+                        <br>
+                        <strong>Sports Day</strong>
+                    </td>
+
+                    <td>
+                        <img src="venue_img.jpg" alt="Event 3" title="Food Fair" class="image">
+                        <br>
+                        <strong>Food Fair</strong>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <img src="venue_img.jpg" alt="Event 4" title="Dance Show" class="image">
+                        <br>
+                        <strong>Dance Show</strong>
+                    </td>
+
+                    <td>
+                        <img src="venue_img.jpg" alt="Event 5" title="Book Exhibition" class="image">
+                        <br>
+                        <strong>Book Exhibition</strong>
+                    </td>
+
+                    <td>
+                        <img src="venue_img.jpg" alt="Event 6" title="Art Exhibition" class="image">
+                        <br>
+                        <strong>Art Exhibition</strong>
+                    </td>
+
+                </tr>
+            </table>
+		<!-- <div id="mainHeader" class="eventCard"> Community Events
+		<a href="#cEvent" class="moreInfo">More Information</a>
+		</div>
+		<div class="eventCard"> Workshop Events
+		<a href="wcEvent" class="moreInfo">More Information</a>
+		</div> -->
+        </section>
+
+        <!-- Dynamic Events -->
+
+        <section>
+
+            <h2>Upcoming Events</h2>
+
+            <input
+            type="text"
+            id="search"
+            placeholder="Search Event">
+
+            <select id="eventType"
+            onchange="showFee(); savePreferences();">
+
+                <option value="">Select Event</option>
+
+                <option value="Conference">Conference</option>
+
+                <option value="Workshop">Workshop</option>
+
+                <option value="Seminar">Seminar</option>
+
+            </select>
+
+            <p id="fee"></p>
+
+            <div id="eventContainer"></div>
+
+        </section>
+
+
+        <!-- <section id="contact">
+            <h2>Contact</h2>
+		<section id="cEvent" class="eventInfo">Community Events Contact no: 1234567894
+		</section>
+		<section id="wEvent" class="eventInfo">Workshop Events Contact no: 9876543213
+		</section>
+
+        </section> -->
+
+
+	<!-- <section class="news">
+    <p>
+        Community events are conducted regularly...
+        Community events are conducted regularly...
+        Community events are conducted regularly...
+    </p>
+	</section> -->
+        <!-- Registration -->
+
+        <section id="register">
+                <h2>Event Registration</h2>
+                    <form id="eventForm">
+                        
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter name" required autofocus>
+                        <br><br>
+
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter email" required>
+                        <br><br>
+
+                        <label for="date">Date</label>
+                        <input type="date" id="date" required>
+                        <br><br>
+
+                        <label for="eventType">Event Type</label>
+                        
+                        <select id="eventType" required onchange="showFee(); savePreference();">
+                            <option value="">Select Event</option>
+                            <option value="Conference">Conference</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Seminar">Seminar</option>
+                        </select>
+                        <h6 id="fee"></h6>
+                    
+                    <!-- <input type="text" id="Search" placeholder="Search Event">
+                         -->
+                    <label for="feedback">Enter Text for counting</label>
+                    <textarea name="feedback" id="feedback" onkeyup="countChars()" placeholder="Enter Text">
+                    </textarea>
+
+                        <p id="count">0</p>
+                        <script>
+                            document.getElementById("eventForm").addEventListener("submit",function(e){
+                                e.preventDefault();
+
+                                if(this.checkValidity()){
+                                    document.getElementById("result").innerHTML="Registration Successful!";
+                                }
+                                else{
+                                    this.reportValidity();
+                                }
+                            });
+                        </script>
+
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" onblur="validatePhone()">
+                        <br><br>
+
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Write message"></textarea>
+                        <br><br>
+
+                        <button type="submit" id="registerBtn" class="cta-button" onclick="registerEvent()">
+                            Register
+                        </button>
+                    </form>
+
+        <output id="result" style="color: #ffffff;"></output>
+        </section>
+
+        <!-- Video -->
+
+        <section>  
+            <h2 style="color: #ffffff;">Promo Video</h2>
+
+        <video width="400" controls oncanplay="videoReady()">
+            <source src="College_campus.mp4" type="video/mp4">
+        </video>
+        <p id="videoMsg"></p>
+        </section>
+
+        <!-- Geolocation -->
+
+        <section>
+
+             <button onclick="findLocation()">Find Nearby Events</button>
+        <p id="location"></p>
+
+        </section>
+
+        <section>
+        <button onclick="clearData()">Clear Preferences</button>
+        </section>
+        <!-- Footer -->
+       <footer id="contact">
+            <h3>Contact Us</h3>
+            <p>Email : portal@example.com</p>
+        </footer>
+
+    </body>
+</html>

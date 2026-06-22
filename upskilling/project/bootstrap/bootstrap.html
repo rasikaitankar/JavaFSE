@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="bootstrap/css/custom.css">    
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <title>BootStrap Excerises</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Hello Bootstrap 5</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4 bg-primary text-white p-3">
+            Column 1
+        </div>
+         <div class="col-12 col-md-6 col-lg-4 bg-success text-white p-3">
+            Column 2
+        </div>
+         <div class="col-12 col-md-6 col-lg-4 bg-danger text-white p-3">
+            Column 3
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 bg-dark text-white p-3">
+                Sidebar
+            </div>
+            <div class="col-md-9 bg-success text-red p-3">
+                Content Area
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 bg-primary text-white p-3">
+                col 1
+            </div>
+            <div class="col-sm-3 bg-success text-white p-3">
+                col 2
+            </div>
+            <div class="col-sm-3 bg-warning text-white p-3">
+                col 3
+            </div><div class="col-sm-3 bg-danger text-white p-3">
+                col 4
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-4 bg-primary text-white text-center">
+                Centered
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 order-md-2 bg-success">
+            Second on Desktop
+        </div>
+        <div class="col-md-6 order-md-1 bg-warning">
+            First on Desktop
+        </div>
+    </div>
+
+    <div class="d-flex flex-column flex-md-row bg-dark p-3">
+        <a class="text-white me-3" href="#">
+            Home
+        </a>
+        <a class="text-white me-3" href="#">
+            Events
+        </a>
+        <a class="text-white me-3" href="#">
+            Contact
+        </a>
+    </div>
+
+    <div class="card p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <h5>Workshop</h5>
+            <button class="btn btn-primary">
+                Register
+            </button>
+        </div>
+    </div>
+
+    <h1 class="display-1">
+        Community Portal
+    </h1>
+    <p class="lead">
+        Welcome to the local event portal
+    </p>
+    <p class="text-muted">
+        Last Updated today
+    </p>
+    <p class="fw-bold">
+        Important Notice
+    </p>
+
+    <p class="text-uppercase">
+        Uppercase
+    </p>
+    <p class="text-lowercase">
+        LOWERCASE
+    </p>
+    <p class="text-capitalize">
+        Capitalize
+    </p>
+
+    <form action="" class="container">
+        <input type="text" class="form-control mb-3" placeholder="Name">
+
+        <input type="email" class="form-control mb-3" placeholder="Email">
+
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+                @
+            </span>
+            <input type="text" class="form-control">
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input">
+            <label for="" class="form-check-label">Accept Terms</label>
+        </div>
+    </form>
+
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="email">
+        <label for="email">Email</label>
+    </div>
+
+    <button class="btn btn-primary">Primary</button>
+    <button class="btn btn-secondary">Secondary</button>
+    <button class="btn btn-danger">Danger</button>
+    <button class="btn btn-success">Success</button>
+    <button class="btn btn-outline-primary">Outline</button>
+    <br><hr>
+
+    <div class="btn-group">
+        <button class="btn btn-primary">Left</button>
+        <button class="btn btn-danger">Middle</button>
+        <button class="btn btn-success">Right</button>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a href="" class="navbar-brand">Portal</a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menu">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Home</a>
+                    </li>
+                </ul>
+
+                <form action="" class="d-flex">
+                    <input type="text" class="form-control me-2">
+                    <button class="btn btn-success">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="" class="nav-link active">Home</a>
+        </li>
+    </ul>
+    <ul class="nav nav-pills mt-3">
+        <li class="nav-item mr-3">
+            <a href="" class="nav-link active">Events</a>
+        </li>
+         <li class="nav-item">
+            <a href="" class="nav-link active">Contact</a>
+        </li>
+    </ul>
+
+    <div class="container mt-5">
+
+        <div class="card mx-auto shadow" style="width: 22rem;">
+
+            <img src="venue_img.jpg"
+                class="card-img-top"
+                alt="Profile Image">
+
+            <div class="card-body">
+
+                <h3 class="card-title">
+                    John Smith
+                </h3>
+
+                <h6 class="text-muted">
+                    Community Organizer
+                </h6>
+
+                <p class="card-text">
+                    Organizes local events, workshops,
+                    and social activities for residents.
+                </p>
+
+                <button class="btn btn-primary">
+                    View Profile
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container mt-5">
+        <div class="d-flex border p-3">
+            <img src="venue_img.jpg" width="150" alt="" class="me-3 rounded">
+            <div>
+                <h4>Community Music Festival</h4>
+                <p> Join us for an exciting evening
+                filled with music, food, and fun.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="bg-primary text-white m-3 p-2">
+            Section 1
+            <br>
+            Margin = m-3
+            <br>
+            Padding = p-2
+        </div>
+
+        <div class="bg-success text-white mt-4 py-5">
+            Section 2
+            <br>
+            Margin = mt-4
+            <br>
+            Padding = py-5
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card text-center p-4 shadow">
+                    <h3>Basic</h3>
+                    <h1>₹199</h1>
+                    <p>1 Event Access</p>
+                    <button class="btn btn-primary">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-4 shadow">
+                    <h3>Standard</h3>
+                    <h1>₹499</h1>
+                    <p>5 Event Access</p>
+                    <button class="btn btn-success">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center p-4 shadow">
+                    <h3>Premium</h3>
+                    <h1>₹999</h1>
+                    <p>Unlimited Events</p>
+                    <button class="btn btn-danger">
+                        Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="bg-primary text-white p-4 rounded">
+                    Total Events
+                    <h2>15</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bg-success text-white p-4 rounded">
+                    Registrations
+                    <h2>300</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bg-warning text-white p-4 rounded">
+                    Pending
+                    <h2>25</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="bg-danger text-white p-4 rounded">
+                    Cancelled
+                    <h2>3</h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bg-dark bg-gradient text-white p-5 text-center">
+        <h1>Community Event Portal</h1>
+        <p>Welcome to our Bootstrap Dashboard</p>
+    </div>
+
+    <div class="container mt-5">
+        <div class="bg-primary text-white p-3">
+            Visible On All Devices
+        </div>
+        <div class="bg-success text-white p-3 d-none d-md-block">
+            Hidden On Mobile
+            Visible On Tablet/Desktop
+        </div>
+        <div class="bg-danger text-white p-3 d-none d-lg-flex">
+            Visible Only on Large Screen
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 bg-dark text-white p-4 d-none d-md-block">
+                <h4>Sidebar</h4>
+                <ul>
+                    <li>Dashboard</li>
+                    <li>Events</li>
+                    <li>Contacts</li>
+                </ul>
+            </div>
+            <div class="col-md-9 p-4">
+                Main Content Area
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center mt-5">
+        <img src="venue_img.jpg" alt="" class="rounded-circle border border-primary border-3" width="200" height="200">
+    </div>
+
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded-pill p-5 text-center">
+            <h3>Premium Membership</h3>
+            <p>Access all events</p>
+        </div>
+    </div>
+
+
+    <div class="container mt-5">
+        <div class="position-relative d-inline-block">
+            <img src="venue_img.jpg" alt="" width="300">
+            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                New
+            </span>
+        </div>
+    </div>
+
+    <button class="btn btn-primary">
+
+        <i class="bi bi-search"></i>
+
+    </button>
+
+    <button class="btn btn-success">
+
+        <i class="bi bi-check-lg"></i>
+
+    </button>
+
+    <button class="btn btn-danger">
+
+        <i class="bi bi-trash"></i>
+
+    </button>
+
+    <br>
+    <hr>
+
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal">
+    Open Modal
+    </button>
+    <div class="modal fade" id="eventModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Event Details
+                    </h4>
+                    <button class="btn-close" data-bs-dismiss="modal"> </button>
+                </div>
+                <div class="modal-body">
+                    Registration successful.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion" id="eventAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#event1">
+                    Workshop Event
+                </button>
+            </h2>
+            <div id="event1" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    Workshop details go here.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#event2">
+                    Music Event
+                </button>
+            </h2>
+            <div id="event2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Music event details go here.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary">
+        Test Button
+    </button>
+
+    <!-- <footer class="bg-dark text-white text-center p-3 position-fixed bottom-0 w-100">
+        © 2026 Local Community Event Portal
+    </footer> -->
+
+    <!-- <footer class="bg-primary text-center text-white p-4">
+        <i class="bi bi-facebook fs-3 me-3"></i>
+        <i class="bi bi-instagram fs-3 me-3"></i>
+        <i class="bi bi-twitter-x fs-3 me-3"></i>
+        <i class="bi bi-linedin fs-3 me-3"></i>
+    </footer> -->
+
+</body> 
+</html>

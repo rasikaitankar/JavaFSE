@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Local Community Event Portal</title>
+        <style>
+	    body{
+	    	background-color:#E6E6FA;
+	    }
+        </style>
+        <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+        <script src="script.js"></script>
+	<script src="main.js"></script>
+    </head>
+    <body>
+
+        <div id="welcomeBanner">
+            Welcome Resident!
+        </div>
+
+        <p>
+            Register today and get 
+            <span style="color:red; font-weight:bold;">
+                20% Discount
+            </span>
+        </p>
+
+        <p class="highlight">
+            Community Festival Starts Soon!
+        </p>
+
+        <!-- Navigation -->
+        <nav>
+	    <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="help.html" target="_blank">Help</a></li>
+	    </ul>
+        </nav>
+
+        <!-- Main -->
+        <section id="home">
+            <h2 style="color:red;">Home</h2>
+        </section>
+
+        <section id="events">
+            <h2>Events</h2>
+		<div id="mainHeader" class="eventCard"> Community Events
+		<a href="#cEvent" class="moreInfo">More Information</a>
+		</div>
+		<div class="eventCard"> Workshop Events
+		<a href="wcEvent" class="moreInfo">More Information</a>
+		</div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+		<section id="cEvent" class="eventInfo">Community Events Contact no: 1234567894
+		</section>
+		<section id="wEvent" class="eventInfo">Workshop Events Contact no: 9876543213
+		</section>
+
+        </section>
+
+        <table>
+            <caption>Past Community Events</caption>
+            <tr>
+                <td>
+                    <img src="venue_img.jpg" alt="Event 1" title="Music Festival" class="image" id="eventImg" ondblclick="enlargeImage()">
+                    <br>
+                    <strong>Music Festival</strong>
+                </td>
+
+                <td>
+                    <img src="venue_img.jpg" alt="Event 2" title="Sports Day" class="image">
+                    <br>
+                    <strong>Sports Day</strong>
+                </td>
+
+                <td>
+                    <img src="venue_img.jpg" alt="Event 3" title="Food Fair" class="image">
+                    <br>
+                    <strong>Food Fair</strong>
+                </td>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <img src="venue_img.jpg" alt="Event 4" title="Dance Show" class="image">
+                    <br>
+                    <strong>Dance Show</strong>
+                </td>
+
+                <td>
+                    <img src="venue_img.jpg" alt="Event 5" title="Book Exhibition" class="image">
+                    <br>
+                    <strong>Book Exhibition</strong>
+                </td>
+
+                <td>
+                    <img src="venue_img.jpg" alt="Event 6" title="Art Exhibition" class="image">
+                    <br>
+                    <strong>Art Exhibition</strong>
+                </td>
+
+            </tr>
+        </table>
+
+	<section class="news">
+    <p>
+        Community events are conducted regularly...
+        Community events are conducted regularly...
+        Community events are conducted regularly...
+    </p>
+	</section>
+
+        <form id="eventForm">
+            
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter name" required autofocus>
+            <br><br>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter email" required>
+            <br><br>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" required>
+            <br><br>
+
+            <label for="eventType">Event Type</label>
+            
+            <select id="eventType" required onchange="showFee(); savePreference();">
+                <option value="">Select Event</option>
+                <option value="Conference">Conference</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Seminar">Seminar</option>
+            </select>
+            <h6 id="fee"></h6>
+		
+	    <input type="text" id="Search" placeholder="Search Event">
+            
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" onblur="validatePhone()">
+            <br><br>
+
+             <label for="message">Message</label>
+            <textarea id="message" placeholder="Write message"></textarea>
+            <br><br>
+
+            <button type="submit" class="cta-button" onclick="registerEvent()">
+                Register
+            </button>
+        </form>
+
+        <output id="result"></output>
+        <br><br>
+
+        <textarea id="feedback" onkeyup="countChars()">
+        </textarea>
+
+        <p id="count">0</p>
+        <script>
+            document.getElementById("eventForm").addEventListener("submit",function(e){
+                e.preventDefault();
+
+                if(this.checkValidity()){
+                    document.getElementById("result").innerHTML="Registration Successful!";
+                }
+                else{
+                    this.reportValidity();
+                }
+            });
+        </script>
+
+        <video width="400" controls oncanplay="videoReady()">
+            <source src="promo.mp4" type="video/mp4">
+        </video>
+        <p id="videoMsg"></p>
+
+        <button onclick="clearData()">Clear Preferences</button>
+        
+        <button onclick="findLocation()">Find Nearby Events</button>
+        <p id="location"></p>
+
+
+        <!-- Footer -->
+        <footer class="hero">
+            <p>© 2026 Local Community Event Portal</p>
+        </footer>
+
+	<hr>
+	<div id="eventContainer">
+	</div>
+    </body>
+
+</html>
