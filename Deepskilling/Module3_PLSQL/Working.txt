@@ -1,0 +1,799 @@
+Microsoft Windows [Version 10.0.26200.8737]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Windows\System32>sc query | findstr Oracle
+SERVICE_NAME: OracleOraDB21Home1TNSListener
+DISPLAY_NAME: OracleOraDB21Home1TNSListener
+SERVICE_NAME: OracleServiceXE
+DISPLAY_NAME: OracleServiceXE
+SERVICE_NAME: OracleOraDB21Home1MTSRecoveryService
+DISPLAY_NAME: OracleOraDB21Home1MTSRecoveryService
+
+C:\Windows\System32>sqlplus -v
+
+SQL*Plus: Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+
+C:\Windows\System32>sqlplus system
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jul 2 18:00:58 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter password:admin
+Last Successful login time: Thu Jul 02 2026 15:25:41 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL>
+
+
+
+SET SERVEROUTPUT ON;
+DECLARE
+	a INTEGER := &a;
+	b INTEGER := &b;
+	c INTEGER;
+BEGIN
+	c := a + b;
+	DBMS_OUTPUT.PUT_LINE('SUM OF '|| a || ' and ' || b || ' is : ' || c);
+END;
+/
+
+DECLARE
+   str1 CHAR(5) := 'Hello';
+   str2 VARCHAR2(10) := 'Welcome';
+   str3 LONG := 'This is a long text';
+BEGIN
+   DBMS_OUTPUT.PUT_LINE(str1);
+   DBMS_OUTPUT.PUT_LINE(str2);
+   DBMS_OUTPUT.PUT_LINE(str3);
+END;
+/
+
+DECLARE
+   name VARCHAR2(20) := 'Geeks For Geeks';
+BEGIN
+   DBMS_OUTPUT.PUT_LINE(name);
+END;
+/
+
+
+Microsoft Windows [Version 10.0.26200.8737]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Janhavi>sqlplus system
+
+SQL*Plus: Release 21.0.0.0.0 - Production on Thu Jul 2 18:02:02 2026
+Version 21.3.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+Enter password:
+Last Successful login time: Thu Jul 02 2026 18:01:02 +05:30
+
+Connected to:
+Oracle Database 21c Express Edition Release 21.0.0.0.0 - Production
+Version 21.3.0.0.0
+
+SQL> show databases;
+SP2-0158: unknown SHOW option "databases"
+SQL> show database;
+SP2-0158: unknown SHOW option "database"
+SQL> show databases;
+SP2-0158: unknown SHOW option "databases"
+SQL> create database plsql;
+create database plsql
+*
+ERROR at line 1:
+ORA-01501: CREATE DATABASE failed
+ORA-01100: database already mounted
+
+
+SQL> CREATE TABLE Customers (
+  2      CustomerID NUMBER PRIMARY KEY,
+  3      Name VARCHAR2(100),
+  4      DOB DATE,
+  5      Balance NUMBER,
+  6      LastModified DATE
+  7  );
+
+Table created.
+
+SQL>
+SQL> CREATE TABLE Accounts (
+  2      AccountID NUMBER PRIMARY KEY,
+  3      CustomerID NUMBER,
+  4      AccountType VARCHAR2(20),
+  5      Balance NUMBER,
+  6      LastModified DATE,
+  7      FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+  8  );
+
+Table created.
+
+SQL>
+SQL> CREATE TABLE Transactions (
+  2      TransactionID NUMBER PRIMARY KEY,
+  3      AccountID NUMBER,
+  4      TransactionDate DATE,
+  5      Amount NUMBER,
+  6      TransactionType VARCHAR2(10),
+  7      FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+  8  );
+
+Table created.
+
+SQL>
+SQL> CREATE TABLE Loans (
+  2      LoanID INTEGER PRIMARY KEY,
+  3      CustomerID NUMBER,
+  4      LoanAmount NUMBER,
+  5      InterestRate NUMBER,
+  6      StartDate DATE,
+  7      EndDate DATE,
+  8      FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+  9  );
+
+Table created.
+
+SQL>
+SQL> CREATE TABLE Employees (
+  2      EmployeeID NUMBER PRIMARY KEY,
+  3      Name VARCHAR2(100),
+  4      Position VARCHAR2(50),
+  5      Salary NUMBER,
+  6      Department VARCHAR2(50),
+  7      HireDate DATE
+  8  );
+
+Table created.
+
+SQL> show tables;
+SP2-0158: unknown SHOW option "tables"
+SQL> INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+  2  VALUES (1, 'John Doe', TO_DATE('1985-05-15', 'YYYY-MM-DD'), 1000, SYSDATE);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+  2  VALUES (2, 'Jane Smith', TO_DATE('1990-07-20', 'YYYY-MM-DD'), 1500, SYSDATE);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+  2  VALUES (1, 1, 'Savings', 1000, SYSDATE);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+  2  VALUES (2, 2, 'Checking', 1500, SYSDATE);
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+  2  VALUES (1, 1, SYSDATE, 200, 'Deposit');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+  2  VALUES (2, 2, SYSDATE, 300, 'Withdrawal');
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+  2  VALUES (1, 1, 5000, 5, SYSDATE, ADD_MONTHS(SYSDATE, 60));
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+  2  VALUES (1, 'Alice Johnson', 'Manager', 70000, 'HR', TO_DATE('2015-06-15', 'YYYY-MM-DD'));
+
+1 row created.
+
+SQL>
+SQL> INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+  2  VALUES (2, 'Bob Brown', 'Developer', 60000, 'IT', TO_DATE('2017-03-20', 'YYYY-MM-DD'));
+
+1 row created.
+
+SQL>
+SQL> desc customers;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTOMERID                                NOT NULL NUMBER
+ NAME                                               VARCHAR2(100)
+ DOB                                                DATE
+ BALANCE                                            NUMBER
+ LASTMODIFIED                                       DATE
+
+SQL> desc accounts;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ACCOUNTID                                 NOT NULL NUMBER
+ CUSTOMERID                                         NUMBER
+ ACCOUNTTYPE                                        VARCHAR2(20)
+ BALANCE                                            NUMBER
+ LASTMODIFIED                                       DATE
+
+SQL> desc transactions;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ TRANSACTIONID                             NOT NULL NUMBER
+ ACCOUNTID                                          NUMBER
+ TRANSACTIONDATE                                    DATE
+ AMOUNT                                             NUMBER
+ TRANSACTIONTYPE                                    VARCHAR2(10)
+
+SQL> desc loans;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ LOANID                                    NOT NULL NUMBER(38)
+ CUSTOMERID                                         NUMBER
+ LOANAMOUNT                                         NUMBER
+ INTERESTRATE                                       NUMBER
+ STARTDATE                                          DATE
+ ENDDATE                                            DATE
+
+SQL> desc employees;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEEID                                NOT NULL NUMBER
+ NAME                                               VARCHAR2(100)
+ POSITION                                           VARCHAR2(50)
+ SALARY                                             NUMBER
+ DEPARTMENT                                         VARCHAR2(50)
+ HIREDATE                                           DATE
+
+SQL> select * from customers;
+
+CUSTOMERID
+----------
+NAME
+--------------------------------------------------------------------------------
+DOB          BALANCE LASTMODIF
+--------- ---------- ---------
+         1
+John Doe
+15-MAY-85       1000 02-JUL-26
+
+         2
+Jane Smith
+20-JUL-90       1500 02-JUL-26
+
+CUSTOMERID
+----------
+NAME
+--------------------------------------------------------------------------------
+DOB          BALANCE LASTMODIF
+--------- ---------- ---------
+
+
+SQL> set pagesize 100 linesize 100
+SQL> select * from customers;
+
+CUSTOMERID
+----------
+NAME
+----------------------------------------------------------------------------------------------------
+DOB          BALANCE LASTMODIF
+--------- ---------- ---------
+         1
+John Doe
+15-MAY-85       1000 02-JUL-26
+
+         2
+Jane Smith
+20-JUL-90       1500 02-JUL-26
+
+
+SQL> set pagesize 500 linesize 500
+SQL> select * from customers;
+
+CUSTOMERID NAME                                                                                                 DOB          BALANCE LASTMODIF
+---------- ---------------------------------------------------------------------------------------------------- --------- ---------- ---------
+         1 John Doe                                                                                             15-MAY-85       1000 02-JUL-26
+         2 Jane Smith                                                                                           20-JUL-90       1500 02-JUL-26
+
+SQL> select * from accounts;
+
+ ACCOUNTID CUSTOMERID ACCOUNTTYPE             BALANCE LASTMODIF
+---------- ---------- -------------------- ---------- ---------
+         1          1 Savings                    1000 02-JUL-26
+         2          2 Checking                   1500 02-JUL-26
+
+SQL> select * from transactions;
+
+TRANSACTIONID  ACCOUNTID TRANSACTI     AMOUNT TRANSACTIO
+------------- ---------- --------- ---------- ----------
+            1          1 02-JUL-26        200 Deposit
+            2          2 02-JUL-26        300 Withdrawal
+
+SQL> select * from loans;
+
+    LOANID CUSTOMERID LOANAMOUNT INTERESTRATE STARTDATE ENDDATE
+---------- ---------- ---------- ------------ --------- ---------
+         1          1       5000            5 02-JUL-26 02-JUL-31
+
+SQL> select * from employees;
+
+EMPLOYEEID NAME                                                                                                 POSITION                                       SALARY DEPARTMENT                                  HIREDATE
+---------- ---------------------------------------------------------------------------------------------------- -------------------------------------------------- ---------- -------------------------------------------------- ---------
+         1 Alice Johnson                                                                                        Manager                                 70000 HR                                          15-JUN-15
+         2 Bob Brown                                                                                            Developer                               60000 IT                                          20-MAR-17
+
+SQL> SET SERVEROUTPUT ON;
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2     a INTEGER := &a;
+  3     b INTEGER := &b;
+  4     c INTEGER;
+  5  BEGIN
+  6     c := a + b;
+  7     DBMS_OUTPUT.PUT_LINE('SUM OF '|| a || ' and ' || b || ' is : ' || c);
+  8  END;
+  9  /
+Enter value for a: 4
+old   2:        a INTEGER := &a;
+new   2:        a INTEGER := 4;
+Enter value for b: 3
+old   3:        b INTEGER := &b;
+new   3:        b INTEGER := 3;
+SUM OF 4 and 3 is : 7
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2     str1 CHAR(3) := 'Hello';
+  3     str2 VARCHAR2(5) := 'Welcome';
+  4     str3 LONG := 'This is a long text';
+  5  BEGIN
+  6     DBMS_OUTPUT.PUT_LINE(str1);
+  7     DBMS_OUTPUT.PUT_LINE(str2);
+  8     DBMS_OUTPUT.PUT_LINE(str3);
+  9  END;
+ 10  /
+DECLARE
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: character string buffer too small
+ORA-06512: at line 2
+
+
+SQL> DECLARE
+  2     str1 CHAR(5) := 'Hello';
+  3     str2 VARCHAR2(5) := 'Welcome';
+  4     str3 LONG := 'This is a long text';
+  5  BEGIN
+  6     DBMS_OUTPUT.PUT_LINE(str1);
+  7     DBMS_OUTPUT.PUT_LINE(str2);
+  8     DBMS_OUTPUT.PUT_LINE(str3);
+  9  END;
+ 10  /
+DECLARE
+*
+ERROR at line 1:
+ORA-06502: PL/SQL: numeric or value error: character string buffer too small
+ORA-06512: at line 3
+
+
+SQL> DECLARE
+  2     str1 CHAR(5) := 'Hello';
+  3     str2 VARCHAR2 := 'Welcome';
+  4     str3 LONG := 'This is a long text';
+  5  BEGIN
+  6     DBMS_OUTPUT.PUT_LINE(str1);
+  7     DBMS_OUTPUT.PUT_LINE(str2);
+  8     DBMS_OUTPUT.PUT_LINE(str3);
+  9  END;
+ 10  /
+   str2 VARCHAR2 := 'Welcome';
+        *
+ERROR at line 3:
+ORA-06550: line 3, column 9:
+PLS-00215: String length constraints must be in range (1 .. 32767)
+
+
+SQL> DECLARE
+  2     str1 CHAR(5) := 'Hello';
+  3     str2 VARCHAR2(10) := 'Welcome';
+  4     str3 LONG := 'This is a long text';
+  5  BEGIN
+  6     DBMS_OUTPUT.PUT_LINE(str1);
+  7     DBMS_OUTPUT.PUT_LINE(str2);
+  8     DBMS_OUTPUT.PUT_LINE(str3);
+  9  END;
+ 10  /
+Hello
+Welcome
+This is a long text
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2     name VARCHAR2(20) := 'Geeks For Geeks';
+  3  BEGIN
+  4     DBMS_OUTPUT.PUT_LINE(name);
+  5  END;
+  6  /
+Geeks For Geeks
+
+PL/SQL procedure successfully completed.
+
+SQL>
+
+SET SERVEROUTPUT ON;
+DECLARE
+DOB DATE;
+BEGIN
+SELECT DOB INTO DOB FROM CUSTOMERS WHERE CUSTOMERID = 1;
+DBMS_OUTPUT.PUT_LINE(DOB);
+END;
+/
+
+
+SET SERVEROUTPUT ON;
+DECLARE
+DOB DATE;
+BEGIN
+UPDATE employees e SET e.SALARY = (SELECT sa.update_salary FROM salary_adjustment sa WHERE sa.employee_id = e.employee_id) WHERE EXISTS (SELECT * FROM salary_adjustment sa WHERE sa.employee_id = e.employee_id);
+END;
+/
+
+SET SERVEROUTPUT ON;
+
+DECLARE
+	CURSOR customer_cursor IS
+	SELECT c.customerID,c.DOB,l.loanid,l.interestrate FROM Customers c JOIN Loans l ON c.customerid = l.customerid;
+	v_age NUMBER;
+BEGIN
+	FOR rec IN customer_cursor LOOP
+		v_age := FLOOR(MONTHS_BETWEEN(SYSDATE,rec.DOB)/12);
+		IF v_age > 30 THEN
+			UPDATE Loans SET InterestRate = InterestRate - 1 WHERE LoanId = rec.LoanId;
+		DBMS_OUTPUT.PUT_LINE('Loan ' || rec.LoanID || ' updated for customer '||rec.customerID);
+		END IF;
+	END LOOP;
+	COMMIT;
+END;
+/
+
+
+DECLARE
+	CURSOR customer_cursor IS SELECT c.customerID,c.DOB,l.loanID,l.InterestRate FROM customers c JOIN Loans l ON c.customerID = l.customerID;
+	v_age NUMBER;
+BEGIN
+	FOR rec IN customer_cursor LOOP
+		v_age := FLOOR(MONTHS_BETWEEN(SYSDATE,rec.DOB)/12);
+		IF v_age > 60 THEN
+			UPDATE Loans SET InterestRate = InterestRate - 1 WHERE loanId = rec.loanId;
+		END IF;
+	END LOOP;
+	COMMIT;
+END;
+/
+
+DECLARE
+	CURSOR customer_reminder IS SELECT c.customerID,c.name,l.loanID FROM customers c JOIN LOANS l ON c.customerid = l.customerid AND l.ENDDATE BETWEEN SYSDATE AND SYSDATE +30;
+BEGIN
+	FOR rec IN customer_reminder LOOP
+		DBMS_OUTPUT.PUT_LINE('REMINDER TO : ' || rec.name || ' having customer ID : ' || rec.customerid || ' loan id : ' || rec.loanid ||' THAT ONLY 30 DAYS LEFT TO END THE LOAN');
+	END LOOP;
+	COMMIT;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE SAFETRANSFERFUNDS (ptoaccount IN NUMBER, pfromaccount IN NUMBER,p_amount IN NUMBER)
+IS
+	v_balance NUMBER;
+BEGIN
+	SELECT balance INTO v_balance FROM Accounts WHERE accountID = pfromaccount;
+	IF v_balance < p_amount THEN 	
+		RAISE_APPLICATION_ERROR(-20001,'INSUFFICIENT BALANCE');
+	END IF;
+	UPDATE ACCOUNTS SET balance = balance + p_amount WHERE accountid = ptoaccount;
+	UPDATE ACCOUNTS SET balance = balance - p_amount WHERE accountid = pfromaccount;
+	COMMIT;
+	DBMS_OUTPUT.PUT_LINE('FUND TRANSFER SUCCESSFULLY');
+EXCEPTION
+	WHEN OTHERS THEN 
+		ROLLBACK;
+		DBMS_OUTPUT.PUT_LINE('ERROR : ' || SQLERRM);
+END;
+/
+
+BEGIN
+SAFETRANSFERFUNDS(1,2,300);
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UPDATESALARY (pemployeeid IN NUMBER,p_increment IN NUMBER)
+IS
+	v_salary NUMBER;
+BEGIN
+	SELECT salary INTO v_salary FROM EMPLOYEES WHERE employeeID = pemployeeid;
+	IF v_salary = NULL THEN 	
+		RAISE_APPLICATION_ERROR(-20001,'INCORRECT EMPLOYEE ID');
+	END IF;
+	UPDATE EMPLOYEES SET salary = salary * ((100 + p_increment)/100) WHERE employeeid = pemployeeid;
+	COMMIT;
+	DBMS_OUTPUT.PUT_LINE('Salary updated');
+EXCEPTION
+	WHEN OTHERS THEN 
+		ROLLBACK;
+		DBMS_OUTPUT.PUT_LINE('INCORRECT EMPLOYEE ID');
+END;
+/
+
+BEGIN
+UPDATESALARY(1,5);
+END;
+/
+BEGIN
+UPDATESALARY(3,5);
+END;
+/
+
+CREATE OR REPLACE PROCEDURE ADDNEWCUSTOMER (p_customerid IN NUMBER,p_name IN VARCHAR2, P_dob IN DATE,p_balance IN NUMBER, p_isvip IN CHAR)
+IS
+BEGIN
+	INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified, ISVIP)
+VALUES (p_customerid,p_name,p_dob,p_balance,SYSDATE,p_isvip);
+	COMMIT;
+	DBMS_OUTPUT.PUT_LINE('Customer Added');
+EXCEPTION
+	WHEN OTHERS THEN 
+		ROLLBACK;
+		DBMS_OUTPUT.PUT_LINE('DUPLICATE CUSTOMER');
+END;
+/
+
+BEGIN
+ADDNEWCUSTOMER(3, 'Bob Peter',TO_DATE('1990-07-20', 'YYYY-MM-DD'), 3000,'F');
+END;
+/
+BEGIN
+ADDNEWCUSTOMER(3, 'Bob Peter',TO_DATE('1990-07-20', 'YYYY-MM-DD'), 3000,'F');
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE ProcessMonthlyInterest
+IS
+BEGIN
+	UPDATE ACCOUNTS SET balance = balance * ((101)/100) WHERE accounttype = 'Savings';
+	COMMIT;
+	DBMS_OUTPUT.PUT_LINE('Saving accounts are updated');
+EXCEPTION
+	WHEN OTHERS THEN 
+		ROLLBACK;
+		DBMS_OUTPUT.PUT_LINE('No saving account to update');
+END;
+/
+
+BEGIN
+ProcessMonthlyInterest();
+END;
+/
+
+
+CREATE OR REPLACE PROCEDURE UpdateEmployeeBonus (p_department IN VARCHAR2,p_increment IN NUMBER)
+IS
+BEGIN
+	UPDATE EMPLOYEES SET salary = salary * ((100 + p_increment)/100) WHERE department = p_department;
+	COMMIT;
+	DBMS_OUTPUT.PUT_LINE('Salary updated');
+EXCEPTION
+	WHEN OTHERS THEN 
+		ROLLBACK;
+		DBMS_OUTPUT.PUT_LINE('INCORRECT EMPLOYEE ID');
+END;
+/
+--EXECUTION
+BEGIN
+UpdateEmployeeBonus('IT',5);
+END;
+/
+
+
+
+CREATE OR REPLACE PROCEDURE TransferFunds (p_customerid IN NUMBER,p_toaccount IN NUMBER, p_fromaccount IN NUMBER,p_amount IN NUMBER)
+IS
+	v_balance NUMBER;
+BEGIN
+	SELECT balance INTO v_balance FROM Accounts WHERE accountID = p_fromaccount AND customerid = p_customerid;
+	IF v_balance < p_amount THEN 	
+		RAISE_APPLICATION_ERROR(-20001,'INSUFFICIENT BALANCE');
+	END IF;
+	UPDATE ACCOUNTS SET balance = balance + p_amount WHERE accountid = p_toaccount AND customerid = p_customerid;
+
+	IF SQL%ROWCOUNT = 0 THEN
+        RAISE_APPLICATION_ERROR(-20002,'Destination account not found.');
+	END IF;
+
+	UPDATE ACCOUNTS SET balance = balance - p_amount WHERE accountid = p_fromaccount AND customerid = p_customerid;
+	IF SQL%ROWCOUNT = 0 THEN
+        RAISE_APPLICATION_ERROR(-20002,'Source account not found.');
+	END IF;
+	COMMIT;
+	DBMS_OUTPUT.PUT_LINE('FUND TRANSFER SUCCESSFULLY');
+EXCEPTION
+	WHEN OTHERS THEN 
+		ROLLBACK;
+		DBMS_OUTPUT.PUT_LINE('ERROR : ' || SQLERRM);
+END;
+/
+
+--execution
+BEGIN
+TransferFunds(1,1,3,300);
+END;
+/
+--execution
+BEGIN
+TransferFunds(1,2,3,300);
+END;
+/
+SHOW ERRORS PROCEDURE TransferFunds;
+
+
+CREATE OR REPLACE FUNCTION CalculateAge(DOB DATE) RETURN NUMBER
+IS
+	v_age NUMBER; 
+BEGIN
+	v_age := FLOOR(MONTHS_BETWEEN(SYSDATE,DOB)/12);
+	RETURN v_age;
+END;
+/
+
+DECLARE
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('AGE OF CUSTOMER IS : ' || CalculateAge(TO_DATE('2015-06-15','YYYY-MM-DD')));
+END;
+/
+
+
+CREATE OR REPLACE FUNCTION CalculateMonthlyInstallment(AMOUNT NUMBER,INTERESTRATE NUMBER,DURATION NUMBER) RETURN NUMBER
+IS
+	v_installment NUMBER; 
+	v_amount NUMBER;
+BEGIN
+	v_amount := (AMOUNT*INTERESTRATE*DURATION)/100;
+	v_installment := v_amount/12;
+	RETURN v_installment;
+END;
+/
+
+DECLARE
+BEGIN
+	DBMS_OUTPUT.PUT_LINE('MONTHLY INSTALLMENT IS : ' || CalculateMonthlyInstallment(5000,5,5));
+END;
+/
+
+SHOW ERRORS FUNCTION CalculateMonthlyInstallment;
+
+CREATE OR REPLACE FUNCTION HasSufficientBalance
+(
+    p_accountid IN NUMBER,
+    p_amount IN NUMBER
+)
+RETURN BOOLEAN
+IS
+    v_balance NUMBER;
+BEGIN
+    SELECT Balance
+    INTO v_balance
+    FROM Accounts
+    WHERE AccountID = p_accountid;
+
+    IF v_balance >= p_amount THEN
+        RETURN TRUE;
+    ELSE
+        RETURN FALSE;
+    END IF;
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN FALSE;
+END;
+/
+
+DECLARE
+    v_result BOOLEAN;
+BEGIN
+    v_result := HasSufficientBalance(1,500);
+
+    IF v_result THEN
+        DBMS_OUTPUT.PUT_LINE('Has Sufficient Balance: TRUE');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Has Sufficient Balance: FALSE');
+    END IF;
+END;
+/
+
+
+CREATE OR REPLACE TRIGGER UpdateCustomerLastModified
+BEFORE UPDATE
+ON Customers
+FOR EACH ROW
+BEGIN
+    :NEW.LastModified := SYSDATE;
+END;
+/
+
+UPDATE Customers
+SET Balance = 5000
+WHERE CustomerID = 1;
+
+COMMIT;
+
+CREATE TABLE AuditLog (
+    TransactionID NUMBER PRIMARY KEY,
+    AccountID NUMBER,
+    TransactionDate DATE,
+    Amount NUMBER,
+    TransactionType VARCHAR2(10),
+    FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+CREATE OR REPLACE TRIGGER LogTransaction
+AFTER INSERT
+ON Transactions
+FOR EACH ROW
+BEGIN
+    INSERT INTO AuditLog (TransactionID,AccountID,TransactionDate,Amount,TransactionType) VALUES (:NEW.TransactionID,:NEW.AccountID,:NEW.TransactionDate,:NEW.Amount,:NEW.TransactionType);
+END;
+/
+
+INSERT INTO TRANSACTIONS (TRANSACTIONID,ACCOUNTID,TRANSACTIONDATE,AMOUNT,TRANSACTIONTYPE) VALUES (3,1,SYSDATE,400,'withdrawal');
+
+DECLARE
+	CURSOR GenerateMonthlyStatements IS 
+	SELECT c.customerid,c.Name,t.transactionID,t.transactiondate,t.amount,t.transactiontype 
+FROM CUSTOMERS c JOIN ACCOUNTS a ON c.customerID = a.customerID JOIN TRANSACTIONS t ON a.accountID = t.accountID WHERE EXTRACT(MONTH FROM t.transactionDate) = EXTRACT(MONTH FROM SYSDATE) AND EXTRACT(YEAR FROM t.transactionDate) = EXTRACT(YEAR FROM SYSDATE);
+BEGIN
+	FOR rec IN GenerateMonthlyStatements LOOP
+		DBMS_OUTPUT.PUT_LINE('Customer ID : ' || rec.customerID || '| Name : ' || rec.Name || ' | Transaction ID : ' || rec.transactionID || ' | Date : ' || TO_CHAR(rec.TransactionDate,'DD-MON-YYYY') || ' | Amount : ' || rec.amount || ' | Type : ' || rec.Transactiontype);
+	END LOOP;
+END;
+/
+
+
+DECLARE
+	CURSOR ApplyAnnualFee IS 
+	SELECT ACCOUNTID,BALANCE FROM ACCOUNTS FOR UPDATE;
+	v_fee NUMBER := 100;
+BEGIN
+	FOR rec IN ApplyAnnualFee LOOP
+		UPDATE ACCOUNTS SET BALANCE  = BALANCE - v_fee WHERE CURRENT OF ApplyAnnualFee;
+	
+		DBMS_OUTPUT.PUT_LINE('Annual fee deducted from account: '|| rec.accountID);
+	END LOOP;
+	COMMIT;
+END;
+/
+
+DECLARE
+	CURSOR UpdateLoanInterestRates IS 
+	SELECT loanid,interestrate FROM loans FOR UPDATE;
+	increment NUMBER := 0.5;
+BEGIN
+	FOR rec IN UpdateLoanInterestRates LOOP
+		UPDATE Loans SET Interestrate  = Interestrate + (increment/100) WHERE CURRENT OF UpdateLoanInterestRates;
+		DBMS_OUTPUT.PUT_LINE('Increment the loan '|| rec.loanid);
+	END LOOP;
+	COMMIT;
+END;
+/
