@@ -797,3 +797,163 @@ BEGIN
 	COMMIT;
 END;
 /
+
+
+//
+CREATE OR REPLACE PACKAGE CustomerManagement AS
+
+    PROCEDURE AddCustomer(p_customerid NUMBER,p_name VARCHAR2,p_dob DATE,p_balance NUMBER, p_isvip CHAR);
+
+    PROCEDURE UpdateCustomer(p_customerid NUMBER,p_name VARCHAR2,p_balance NUMBER);
+
+    FUNCTION GetCustomerBalance(p_customerid NUMBER) RETURN NUMBER;
+END CustomerManagement;
+/
+
+
+
+CREATE OR REPLACE PACKAGE BODY CustomerManagement AS
+
+    PROCEDURE AddCustomer(p_customerid NUMBER,p_name VARCHAR2,p_dob DATE,p_balance NUMBER, p_isvip CHAR)
+    IS
+    BEGIN
+        INSERT INTO Customers VALUES( p_customerid,p_name,p_dob,p_balance,SYSDATE,p_isvip);
+        DBMS_OUTPUT.PUT_LINE('Customer Added');
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            DBMS_OUTPUT.PUT_LINE('Customer Already Exists');
+    END;
+    PROCEDURE UpdateCustomer(p_customerid NUMBER,p_name VARCHAR2,p_balance NUMBER)
+    IS
+    BEGIN
+        UPDATE Customers SET Name = p_name, Balance = p_balance WHERE CustomerID = p_customerid;
+        DBMS_OUTPUT.PUT_LINE('Customer Updated');
+    END;
+    FUNCTION GetCustomerBalance(p_customerid NUMBER)
+    RETURN NUMBER
+    IS
+        v_balance NUMBER;
+    BEGIN
+        SELECT Balance INTO v_balance FROM Customers WHERE CustomerID = p_customerid;
+        RETURN v_balance;
+    END;
+END CustomerManagement;
+/
+
+BEGIN
+    CustomerManagement.AddCustomer(5,'Rahul',TO_DATE('2000-01-01','YYYY-MM-DD'),8000,'N');
+    CustomerManagement.UpdateCustomer(5,'Rahul Sharma',9000);
+END;
+/
+
+DECLARE
+    v_balance NUMBER;
+BEGIN
+    v_balance := CustomerManagement.GetCustomerBalance(5);
+    DBMS_OUTPUT.PUT_LINE(v_balance);
+END;
+/
+
+
+//2
+CREATE OR REPLACE PACKAGE EmployeeManagement AS
+    PROCEDURE HireEmployee(p_id NUMBER,p_name VARCHAR2,p_position VARCHAR2,p_salary NUMBER,p_department VARCHAR2,p_hiredate DATE);
+    PROCEDURE UpdateEmployee(p_id NUMBER,p_salary NUMBER);
+    FUNCTION AnnualSalary(p_id NUMBER)
+    RETURN NUMBER;
+END EmployeeManagement;
+/
+
+
+CREATE OR REPLACE PACKAGE BODY EmployeeManagement AS
+
+    PROCEDURE HireEmployee(p_id NUMBER,p_name VARCHAR2,p_position VARCHAR2,p_salary NUMBER,p_department VARCHAR2,p_hiredate DATE)
+    IS
+    BEGIN
+        INSERT INTO Employees VALUES(p_id,p_name,p_position,p_salary,p_department,p_hiredate);
+        DBMS_OUTPUT.PUT_LINE('Employee Added');
+    END;
+    PROCEDURE UpdateEmployee(p_id NUMBER,p_salary NUMBER)
+    IS
+    BEGIN
+        UPDATE Employees SET Salary = p_salary WHERE EmployeeID = p_id;
+        DBMS_OUTPUT.PUT_LINE('Employee Updated');
+    END;
+    FUNCTION AnnualSalary(p_id NUMBER)
+    RETURN NUMBER
+    IS
+        v_salary NUMBER;
+    BEGIN
+        SELECT Salary INTO v_salary FROM Employees WHERE EmployeeID = p_id;
+        RETURN v_salary*12;
+    END;
+END EmployeeManagement;
+/
+
+BEGIN
+EmployeeManagement.HireEmployee(10,'Amit','Developer',50000,'IT',SYSDATE);
+EmployeeManagement.UpdateEmployee(10,55000);
+END;
+/
+
+DECLARE
+    v_salary NUMBER;
+BEGIN
+    v_salary := EmployeeManagement.AnnualSalary(10);
+    DBMS_OUTPUT.PUT_LINE(v_salary);
+END;
+/
+
+
+//3
+CREATE OR REPLACE PACKAGE AccountOperations AS
+    PROCEDURE OpenAccount(p_accountid NUMBER,p_customerid NUMBER,p_type VARCHAR2,p_balance NUMBER);
+    PROCEDURE CloseAccount(p_accountid NUMBER);
+    FUNCTION TotalBalance(p_customerid NUMBER)
+    RETURN NUMBER;
+END AccountOperations;
+/
+CREATE OR REPLACE PACKAGE BODY AccountOperations AS
+    PROCEDURE OpenAccount(p_accountid NUMBER,p_customerid NUMBER,p_type VARCHAR2,p_balance NUMBER)
+    IS
+    BEGIN
+        INSERT INTO Accounts VALUES(p_accountid,p_customerid,p_type,p_balance,SYSDATE);
+        DBMS_OUTPUT.PUT_LINE('Account Opened');
+    END;
+    PROCEDURE CloseAccount(p_accountid NUMBER)
+    IS
+    BEGIN
+        DELETE FROM Accounts WHERE AccountID = p_accountid;
+        DBMS_OUTPUT.PUT_LINE('Account Closed');
+    END;
+    FUNCTION TotalBalance(p_customerid NUMBER)
+    RETURN NUMBER
+    IS
+        v_total NUMBER;
+    BEGIN
+        SELECT SUM(Balance) INTO v_total FROM Accounts WHERE CustomerID = p_customerid;
+        RETURN v_total;
+    END;
+END AccountOperations;
+/
+BEGIN
+AccountOperations.OpenAccount(5,1,'Savings',5000);
+END;
+/
+DECLARE
+    v_total NUMBER;
+BEGIN
+
+    v_total := AccountOperations.TotalBalance(1);
+    DBMS_OUTPUT.PUT_LINE('Total Balance = '||v_total);
+
+END;
+/
+BEGIN
+AccountOperations.CloseAccount(5);
+END;
+/
+
+rasikaitankar21105@gmail.com(Rasika Itankar)
+
+git commit -m "Implementation of module 4 that is springboot application testing with JUnit and Mockito"
