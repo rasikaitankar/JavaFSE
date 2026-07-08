@@ -1,15 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './Components/App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthContextProvider from './Context/AuthContextProvider';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import devActions from './reducers/devReducers';
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"></link>
+
+const store = configureStore({
+  reducer: devActions.reducer
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App/>
+    </Provider>
+    {/* <AuthContextProvider>
+          <App />
+    </AuthContextProvider> */}
   </React.StrictMode>
 );
 

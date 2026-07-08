@@ -27,6 +27,13 @@
       "lastName": "Peter",
       "favLang": "c++",
       "startYear": "1983"
+    },
+    {
+      "id": "jjqUtZdROQc",
+      "firstName": "arya",
+      "lastName": "pande",
+      "favLang": "c",
+      "startYear": "2021"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

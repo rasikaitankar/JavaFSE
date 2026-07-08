@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from '../logo.svg';
 import AddDeveloper from './AddDeveloper';
 import DisplayBios from './DisplayBios';
 function Home(props){
