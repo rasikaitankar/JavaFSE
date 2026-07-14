@@ -21,4 +21,27 @@ public class CountryService {
 		return countryRepository.findAll();
 	}
 	
+	public Country getCountry(String code) {
+		return countryRepository.findById(code).orElse(null);
+	}
+	
+	@Transactional
+	public void addCountry(Country country) {
+		countryRepository.save(country);
+	}
+	
+	@Transactional
+	public List<Country> searchCountries(String text){
+		return countryRepository.findByNameContaining(text);
+	}
+	
+	@Transactional
+	public List<Country> searchCountriesSorted(String text){
+		return countryRepository.findByNameContainingOrderByNameAsc(text);
+	}
+	
+	@Transactional
+	public List<Country> searchCountriesStartingWith(String text){
+		return countryRepository.findByNameStartingWith(text);
+	}
 }
