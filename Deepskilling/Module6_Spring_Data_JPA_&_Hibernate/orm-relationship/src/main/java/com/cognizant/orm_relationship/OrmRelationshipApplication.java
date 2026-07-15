@@ -1,5 +1,7 @@
 package com.cognizant.orm_relationship;
 
+import java.util.List;
+
 import org.springframework.boot.SpringApplication;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -28,11 +30,19 @@ public class OrmRelationshipApplication {
 		departmentService = context.getBean(DepartmentService.class);
 		skillService = context.getBean(SkillService.class);
 
-		testGetEmployee();
+//		testGetEmployee();
 		
-		testGetDepartment();
+//		testGetDepartment();
 		
-		testAddSkillToEmployee();
+//		testAddSkillToEmployee();
+		
+//		testGetAllPermanentEmployees();
+		
+//		testGetAverageSalary();
+		
+//		testGetAllEmployeeNative();
+		
+		testCriteriaQuery();
 	}
 	
 	private static void testGetEmployee() {
@@ -63,6 +73,51 @@ public class OrmRelationshipApplication {
 	    employeeService.save(employee);
 	    	
 	    System.out.println("Skill Added Successfully");
+	}
+	
+	private static void testGetAllPermanentEmployees() {
+		System.out.println("Start");
+		
+		List<Employee> employees = employeeService.getAllPermanentEmployees();
+		
+//		System.out.println(employees);
+//		employees.forEach(e -> System.out.println(e.getSkillList()));
+		
+		for(Employee e : employees) {
+
+	        System.out.println(e);
+	        System.out.println("Department : " + e.getDepartment());
+	        System.out.println("Skills : " + e.getSkillList());
+	    }
+		
+		System.out.println("End");
+	}
+	
+	private static void testGetAverageSalary() {
+		System.out.println("Start");
+		
+		double salary = employeeService.getAverageSalary(3);
+		
+		System.out.println("Average Salary : "+salary);
+		
+		System.out.println("End");
+	}
+	
+	private static void testGetAllEmployeeNative() {
+		System.out.println("Start");
+		
+		List<Employee> employees = employeeService.getAllEmployeeNative();
+		employees.forEach(System.out::println);
+		
+		
+		System.out.println("End");
+	}
+	
+	private static void testCriteriaQuery() {
+		System.out.println("Start");
+		List<Employee> employees = employeeService.searchEmployee(true);
+		employees.forEach(System.out::println);
+		System.out.println("End");
 	}
 }
 

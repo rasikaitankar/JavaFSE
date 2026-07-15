@@ -14,7 +14,7 @@ public class Employee {
 	@JoinColumn(name="em_dp_id")
 	private Department department;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name="employee_skill",
 	joinColumns=@JoinColumn(name="es_em_id"),
 	inverseJoinColumns=@JoinColumn(name="es_sk_id"))

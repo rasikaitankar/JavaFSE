@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @Table(name="department")
 public class Department {
 
-	@OneToMany(mappedBy="department",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="department")
 	private Set<Employee> employeeList;	
 
 	@Id
