@@ -11,7 +11,7 @@ public class SpringLearnApplication {
 		SpringApplication.run(SpringLearnApplication.class, args);
 //		ApplicationContext context = new ClassPathXmlApplicationContext("date-format.xml");
 		
-		displayCountry();
+//		displayCountry();
 //		SimpleDateFormat format = context.getBean("dateFormat",SimpleDateFormat.class);
 		
 	}
