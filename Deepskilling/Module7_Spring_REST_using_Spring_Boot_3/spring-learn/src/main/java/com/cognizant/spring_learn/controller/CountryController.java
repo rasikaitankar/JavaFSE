@@ -22,5 +22,11 @@ public class CountryController {
 	@RequestMapping("/countries/{code}")
 	public Country getCountryByCode(@PathVariable String code) {
 		return countryService.getCountry(code);
+		
+	}
+	@RequestMapping("/countries")
+	public Country getCountryByCode() {
+		return countryService.getCountry("IN");
+		
 	}
 }
